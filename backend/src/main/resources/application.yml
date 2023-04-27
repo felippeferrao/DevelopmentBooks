@@ -1,0 +1,38 @@
+application:
+  title: Book Store REST API
+  version: 1.0.0
+spring:
+  datasource:
+    driverClassName: org.h2.Driver
+    password: bookStore
+    url: jdbc:h2:mem:testdb
+    username: sa
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: true
+    
+  h2:
+    console:
+      enabled: true 
+  mvc:
+     pathmatch:
+        matching-strategy: ANT_PATH_MATCHER # Configuration Added to make Swagger works
+
+
+# Actuator com.library.api
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+swagger:
+  enable: true
+
+# JWT config
+security:
+  jwt:
+    expiration: 86400000
+    secret: B8A0C3AD1ADF342067FCCE82CBDA8DA564E34BA988B7300CB4ABE0EEA77C0DB4

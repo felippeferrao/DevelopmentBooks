@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.bookstore.api</groupId>
-	<artifactId>book-store-api</artifactId>
+	<artifactId>bookstore-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>bookstore-api</name>
 	<description>API Restful - Book Store</description>
