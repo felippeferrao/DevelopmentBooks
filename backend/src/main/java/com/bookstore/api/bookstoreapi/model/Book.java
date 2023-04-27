@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -45,7 +46,7 @@ public class Book implements Serializable {
     private String author;
     
     @Column(name = "year_book")
-    @NotBlank(message = "Year is mandatory")
+    @NotNull(message = "Year is mandatory")
     @ApiModelProperty(notes = "Year", example = "2023", required = true)
     private Integer year;
     
@@ -57,10 +58,10 @@ public class Book implements Serializable {
     @Column(name = "image_url", length = 1000)
     @NotBlank(message = "Image URL is mandatory")
     @ApiModelProperty(notes = "Image Url", example = "https://imagebanks/imagebookone.jpg", required = true)
-    private String imageUrl;
+    private String imageUrl;    
     
     @Column(name = "price")
-    @NotBlank(message = "Price is mandatory")
+    @NotNull(message = "Price is mandatory")
     @ApiModelProperty(notes = "Price", example = "50", required = true)
     private BigDecimal price;
     
