@@ -1,0 +1,258 @@
+{
+	"info": {
+		"_postman_id": "802c20de-719c-478d-9255-243ca0eedaed",
+		"name": "BOOK STORE - REST API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1135746"
+	},
+	"item": [
+		{
+			"name": "AUTH",
+			"item": [
+				{
+					"name": "Authenticate",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "   {\r\n        \"email\": \"sa@email.com\",\r\n        \"password\" : \"123456\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/auth",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Books",
+			"item": [
+				{
+					"name": "GetAllBooks",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYSIsInJvbGVzIjpbXSwiZXhwIjoxNzA4NjEzMjM5LCJpYXQiOjE2MjIyMTMyMzl9.RI_CMvQa82j447fkomOnQF4alFOYz3KBq8_q26faK2E",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/api/v1/book/list",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"book",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FindBookById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYSIsInJvbGVzIjpbXSwiZXhwIjoxNzA4NjEzMjM5LCJpYXQiOjE2MjIyMTMyMzl9.RI_CMvQa82j447fkomOnQF4alFOYz3KBq8_q26faK2E",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/api/v1/book/detail/2",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"book",
+								"detail",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "InsertBook",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYSIsInJvbGVzIjpbXSwiZXhwIjoxNzA4NjEzMjM5LCJpYXQiOjE2MjIyMTMyMzl9.RI_CMvQa82j447fkomOnQF4alFOYz3KBq8_q26faK2E",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "   {\n        \"title\": \"Test Book\",\n        \"author\" : \"Felippe Ferrão\",\n        \"year\" : 2023,\n        \"description\" : \"The Best Book Ever\",\n        \"imageUrl\" : \"https://felippeferrao.pt/img2.jpeg\",\n        \"price\": 150\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/api/v1/book",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"book"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateBook",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYSIsInJvbGVzIjpbXSwiZXhwIjoxNzA4NjEzMjM5LCJpYXQiOjE2MjIyMTMyMzl9.RI_CMvQa82j447fkomOnQF4alFOYz3KBq8_q26faK2E",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\n        \"title\": \"Test Book _ UPDT\",\n        \"author\" : \"Felippe Ferrão\",\n        \"year\" : 2026,\n        \"description\" : \"The Best Book Ever\",\n        \"imageUrl\" : \"https://felippeferrao.pt/img2.jpeg\",\n        \"price\": 150\n   }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/api/v1/book/6",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"book",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CART",
+			"item": [
+				{
+					"name": "getMyCart",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYSIsInJvbGVzIjpbXSwiZXhwIjoxNzA4NjEzMjM5LCJpYXQiOjE2MjIyMTMyMzl9.RI_CMvQa82j447fkomOnQF4alFOYz3KBq8_q26faK2E",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/api/v1/cart/myCart",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cart",
+								"myCart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addItemToCart",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYSIsInJvbGVzIjpbXSwiZXhwIjoxNzA4NjEzMjM5LCJpYXQiOjE2MjIyMTMyMzl9.RI_CMvQa82j447fkomOnQF4alFOYz3KBq8_q26faK2E",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"bookId\": 3,\n   \"quantity\": 3\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/api/v1/cart/addItem",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cart",
+								"addItem"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
