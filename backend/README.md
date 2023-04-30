@@ -1,26 +1,5 @@
-# DevelopmentBooks
+# DevelopmentBooks - Backend Docs
 Development Books - Full Solution API
-
-This RESTAPI was developed to Accomplish the KATA described under the following link: https://github.com/stephane-genicot/katas/blob/master/DevelopmentBooks.md
-
-Short Description of the solution:
-
-There is a series of books about software development that have been read by a lot of developers who want to improve their development skills. Let’s say an editor, in a gesture of immense generosity to mankind (and to increase sales as well), is willing to set up a pricing model where you can get discounts when you buy these books (5 books available in total). 
-
-Rules
-The rules are described below :
-One copy of the five books costs 50 EUR.
-
- - If, however, you buy two different books from the series, you get a 5% discount on those two books.
- - If you buy 3 different books, you get a 10% discount.
- - With 4 different books, you get a 20% discount.
- - If you go for the whole hog, and buy all 5, you get a huge 25% discount.
-
-Note that if you buy, say, 4 books, of which 3 are different titles, you get a 10% discount on the 3 that form part of a set, but the 4th book still costs 50 EUR.
-
-Developers seeking to deliver quality products are queueing up with shopping baskets overflowing with these books. Your mission is to write a piece of code to calculate the price of any conceivable shopping basket.
-
-Please read the following steps to setup the project in your local machine.
 
 
 # **Getting Started**
@@ -33,3 +12,75 @@ The following project is deployed with the following features:
 - Spring Data to persistence the data with H2 as database.
 - Spring Fox with Swagger to generate the API documentation
 - Docker as a container
+
+# **Reference Documentation**
+
+For reference, please follow the next steps:
+
+1. Clone the project from GIT: [https://github.com/felippeferrao/DevelopmentBooks.git](https://github.com/felippeferrao/DevelopmentBooks.git)
+2. In Eclipse IDE, import the project as Maven project.
+3. Build the applucation
+
+## Two scripts were created to build the Docker image and create the container.
+
+1. Access the project directory.
+
+3. Run shell-script 'build.sh':
+
+       sh build.sh
+
+3. Run the shell-script 'run.sh':
+
+       sh run.sh
+
+# H2 Database
+
+This REST API is currently using an H2 database called **testdb** so you can run it quickly and out-of-the-box without much configuration.
+
+The script is located in the resources directory: /main/resources/data.sql
+
+## H2 Console
+
+1. Make sure the project is running
+2. Go to URL: http://localhost:8080/h2-console
+3. Login:
+
+- Driver Class: org.h2.driver
+- JDBC URL: jdbc:h2:mem:testdb
+- User Name: sa
+- Password: library
+
+# Generated Swagger Documentation
+
+The application was configured as a Spring Boot to integrate swagger2. In Spring Boot, a REST API was exposed. The documentation of REST services is very important and should help consumers of the service to know which services are available, such as authentication. In addition, it is a simple way to test whether the service is active.
+
+1. Make sure the project is running
+2. Go to URL: http://localhost:8090/swagger-ui.html
+
+# Postman API Client
+
+To send requests and view responses, test the endpoints using the collection located in the project: / main / resources / postman_colection
+
+1. Make sure the project is running
+2. Open Postman API Client an import the file **LIBRARY.postman_collection.json**
+
+# Spring Security with Bearer token
+
+1. Make sure the project is running
+2. Make a POST request to `http://localhost:8080/auth` with the default admin user we programatically created to get a valid JWT token:
+
+       Request Body:
+
+       {
+           "email": "sa@email.com",
+           "password": "123456"
+       }
+
+       Response body:
+
+       {
+           "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYSIsInJvbGVzIjpbXSwiZXhwIjoxNzA4Njc4NzM2LCJpYXQiOjE2MjIyNzg3MzZ9.TFVjHPzH10Frn3k3QZmJs56EbRAega55oPI-sH7pMHA"
+       }
+
+3. Add the JWT token as a Bearer token parameter and make the initial request to rest of endpoints.
+
