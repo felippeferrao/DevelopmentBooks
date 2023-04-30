@@ -3,13 +3,13 @@ package com.bookstore.api.bookstoreapi.model;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -23,25 +23,26 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "cart_items")
-@IdClass(CartItemKey.class)
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class CartItem implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
-    @Id
-    @Column(name = "cart_id")
-    @ApiModelProperty(notes = "Cart ID", example = "1", required = true, hidden = true)
-    private Long cartId;
 
-    @Id
-    @Column(name = "book_id")
-    @ApiModelProperty(notes = "Book ID", example = "1", required = true, hidden = true)
-    private Long bookId;
-    
+    @EmbeddedId
+    private CartItemKey id;
+
     @Column(name = "quantity")
-    @NotBlank(message = "Quantity is mandatory")
+    @NotNull(message = "Quantity is mandatory")
     @ApiModelProperty(notes = "Quantity", example = "1", required = true)
     private Integer quantity;
 
+    @ManyToOne
+    @MapsId("bookId")
+    @JoinColumn(name = "book_id", insertable = false, updatable = false)
+    private Book book;
+
+    @ManyToOne
+    @MapsId("cartId")
+    @JoinColumn(name = "cart_id", insertable = false, updatable = false)
+    private Cart cart;
 }
