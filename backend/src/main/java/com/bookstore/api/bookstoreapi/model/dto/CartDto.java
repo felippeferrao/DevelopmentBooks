@@ -18,4 +18,5 @@ public class CartDto implements Serializable {
     private String status;
     private User cartUser;
     private List<CartItemDto> items;
+    private SetBooksDto discountSet;
 }

@@ -22,7 +22,7 @@ public class User implements UserDetails {
     private String name;
     private String email;
     private String password;
-
+      
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Role> roles = new ArrayList<>();
 

@@ -34,8 +34,8 @@ INSERT INTO book (title, author, year_book, description, image_url, price) VALUE
  50);
  
  INSERT INTO discount (num_books, discount) VALUES 
- (2, 5),
- (3, 10),
- (4, 20),
- (5, 25);
+ (2, 0.05),
+ (3, 0.1),
+ (4, 0.2),
+ (5, 0.25);
  

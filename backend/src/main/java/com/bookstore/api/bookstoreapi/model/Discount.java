@@ -42,6 +42,6 @@ public class Discount implements Serializable {
     @Column(name = "discount")
     @NotNull(message = "Dicount is mandatory")
     @ApiModelProperty(notes = "Discount", example = "10", required = true)
-    private BigDecimal dicount;
+    private BigDecimal discount;
     
 }
