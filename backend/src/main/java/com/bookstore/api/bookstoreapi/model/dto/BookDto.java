@@ -17,7 +17,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BookDto implements Serializable {
-    private Long id;
+    private static final long serialVersionUID = 1L;
+
+	private Long id;
     
     @NotNull
     @NotBlank(message = "Title is mandatory")

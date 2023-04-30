@@ -9,7 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -35,12 +35,12 @@ public class Discount implements Serializable {
     private Long id;
 
     @Column(name = "num_books")
-    @NotBlank(message = "Number of Different Books is mandatory")
+    @NotNull(message = "Number of Different Books is mandatory")
     @ApiModelProperty(notes = "Num Books", example = "1", required = true)
     private Integer numBooks;
     
     @Column(name = "discount")
-    @NotBlank(message = "Dicount is mandatory")
+    @NotNull(message = "Dicount is mandatory")
     @ApiModelProperty(notes = "Discount", example = "10", required = true)
     private BigDecimal dicount;
     

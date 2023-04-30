@@ -40,9 +40,8 @@ public class AuthenticationController {
 		try {
 			Authentication authentication = authManager.authenticate(dataLogin);
 			String token = jwtUtil.generateToken((UserDetails) authentication.getPrincipal());
-			return ResponseEntity.ok(new TokenDto(token));
+			return ResponseEntity.ok(new TokenDto(token, authentication.getName()));
 		} catch (AuthenticationException e) {
-			//e.printStackTrace();
 			return ResponseEntity.badRequest().build();
 		}
 	}

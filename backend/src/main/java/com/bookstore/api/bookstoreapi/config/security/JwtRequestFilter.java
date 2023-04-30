@@ -30,6 +30,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                 authToken = authHeaderOptional.get().substring(7);
 
                 String username = this.jwtUtil.getUsernameFromToken(authToken);
+                
                 if (username != null && this.jwtUtil.isValidToken(authToken)) {
                     Claims claims = this.jwtUtil.getAllClaimsFromToken(authToken);
                     List<Map<String, Object>> authorities = (List)claims.get("roles", ArrayList.class);
