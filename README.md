@@ -31,3 +31,9 @@ All the Books and Descounts configuration were loaded in a local Database, it me
 Please access the frontend or backend folder to get more details about how to install and run each solution.
 
 
+# Installation / Configuration
+
+* [Backend](/backend/README.md)
+
+* [Frontend](/frontend/README.md)
+
