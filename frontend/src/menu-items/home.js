@@ -26,7 +26,7 @@ const home = {
             id: 'cart',
             title: 'My Cart',
             type: 'item',
-            url: '/home',
+            url: '/cart',
             icon: icons.ShoppingCartOutlined,
             breadcrumbs: false
         }

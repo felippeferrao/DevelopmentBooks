@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class SetBooksDto {
     private BigDecimal totalPrice;
-    private BigDecimal totalDicount;
+    private BigDecimal totalDiscount;
     private List<List<SetDto>> bookSets;
 
 }

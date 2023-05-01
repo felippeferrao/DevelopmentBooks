@@ -7,6 +7,7 @@ import MainLayout from 'layout/MainLayout';
 // render - dashboard
 const DashboardDefault = Loadable(lazy(() => import('pages/dashboard')));
 const Home = Loadable(lazy(() => import('pages/home')));
+const Cart = Loadable(lazy(() => import('pages/cart')));
 
 // ==============================|| MAIN ROUTING ||============================== //
 
@@ -20,7 +21,11 @@ const MainRoutes = {
         },
         {
             path: 'home',
-            element: <DashboardDefault />
+            element: <Home />
+        },
+        {
+            path: 'cart',
+            element: <Cart />
         }
     ]
 };

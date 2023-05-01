@@ -17,5 +17,5 @@ public class SetDto implements Serializable {
     
 	private Book book;
     private Integer quantity;
-    private BigDecimal dicount;
+    private BigDecimal discount;
 }

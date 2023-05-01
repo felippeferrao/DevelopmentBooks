@@ -2,9 +2,11 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { BookService } from 'services/BookService';
+import { CartService } from 'services/CartService';
 import { Grid, Typography, Button, Card, CardMedia, CardContent, CardActions, Box } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import BookDialog from 'components/bookDialog/BookDialog';
+import CartBanner from 'components/cart/CartBanner';
 
 const useStyles = makeStyles({
     card: {
@@ -26,14 +28,18 @@ import MainCard from 'components/MainCard';
 const Home = () => {
     const classes = useStyles();
     const bookService = new BookService();
+    const cartService = new CartService();
     let authObj = useSelector((state) => state.auth);
     bookService.setToken(authObj.token);
+    cartService.setToken(authObj.token);
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [books, setBooks] = useState([]);
     const [error, setError] = useState(false);
     const [showPopup, setShowPopup] = useState(false);
     const [selectedBook, setSelectedBook] = useState(null);
+    const [cart, setCart] = useState({});
 
     const handleAddToCartClick = (book) => {
         setSelectedBook(book);
@@ -57,6 +63,20 @@ const Home = () => {
     const addToCart = (bookId, quantity) => {
         // Implementar aqui a lógica para adicionar o livro ao carrinho
         console.log(`Adicionando ${quantity} cópias do livro ${bookId} ao carrinho.`);
+        var content = { bookId, quantity };
+
+        cartService
+            .addItemToCart(content)
+            .then((reg) => {
+                if (!reg) {
+                    setError({ submit: 'API Error' });
+                }
+
+                setCart(reg);
+            })
+            .catch((err) => {
+                setError({ submit: err.message });
+            });
     };
 
     return (
@@ -108,6 +128,7 @@ const Home = () => {
                     onAddToCart={(book, quantity) => addToCart(book, quantity)}
                 />
             )}
+            {cart && <CartBanner cart={cart} />}
         </MainCard>
     );
 };

@@ -31,7 +31,7 @@ const BookDialog = ({ book, open, onClose, onAddToCart }) => {
     };
 
     const handleAddToCart = () => {
-        onAddToCart(book, quantity);
+        onAddToCart(book.id, quantity);
         onClose();
     };
 

@@ -51,7 +51,7 @@ public class DiscountService {
 	            		SetDto set = new SetDto(key, quantity, discount);
 	            		
 	            	    currentSet.setTotalPrice(currentSet.getTotalPrice().add(key.getPrice().multiply(new BigDecimal(quantity))));
-	            	    currentSet.setTotalDicount(currentSet.getTotalDicount().add(calculateDiscountPrice(key,discount, quantity)));
+	            	    currentSet.setTotalDiscount(currentSet.getTotalDiscount().add(calculateDiscountPrice(key,discount, quantity)));
 	            	    
 	            	    listBooks.add(set);   
 	            	}
@@ -60,7 +60,7 @@ public class DiscountService {
 	            }
 	            
 	            currentSet.setBookSets(bookSets);
-	            if (bestSet == null || bestSet.getTotalDicount().compareTo(currentSet.getTotalDicount()) < 0) {
+	            if (bestSet == null || bestSet.getTotalDiscount().compareTo(currentSet.getTotalDiscount()) < 0) {
 	            	bestSet = currentSet;
 	            }
 	     }
