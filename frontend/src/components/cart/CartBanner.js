@@ -1,37 +1,36 @@
 import React from 'react';
-import { Box, Typography, IconButton, Link } from '@mui/material';
-import { ShoppingCartOutlined } from '@ant-design/icons';
+import { Box, Typography, Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import AnimateButton from 'components/@extended/AnimateButton';
 
 const CartBanner = ({ cart }) => {
     const totalPrice = cart.discountSet?.totalPrice ? cart.discountSet.totalPrice.toFixed(2) : '0.00';
     const totalDiscount = cart.discountSet?.totalDiscount ? cart.discountSet.totalDiscount.toFixed(2) : '0.00';
+    const navigate = useNavigate();
 
     const bookCount = cart?.items?.reduce((acc, item) => {
         return acc + item.quantity;
     }, 0);
 
+    const handleCartClick = () => {
+        navigate('/cart');
+    };
+
     return (
         <Box sx={{ bgcolor: 'primary.main', color: 'white', p: 2 }}>
             <Typography variant="body1">
                 <Typography variant="subtitle1" gutterBottom>
-                    Total price: {totalPrice} €
-                </Typography>
-                <Typography variant="subtitle1" gutterBottom>
-                    Number of Books: {bookCount}
-                </Typography>
-                <Typography variant="subtitle1" gutterBottom>
-                    Total discount: {totalDiscount} €
+                    Total price: {totalPrice} € | Number of Books: {bookCount} | Total discount: {totalDiscount} €
                 </Typography>
                 <Typography variant="subtitle1" gutterBottom>
                     Total to pay: {(totalPrice - totalDiscount).toFixed(2)} €
                 </Typography>
             </Typography>
-            <IconButton component={Link} to="/cart" color="inherit" aria-label="Checkout">
-                <ShoppingCartOutlined fontSize="large" />
-                <Typography variant="subtitle1" component="span" sx={{ pl: 1 }}>
+            <AnimateButton>
+                <Button variant="contained" color="success" size="small" onClick={handleCartClick}>
                     Checkout
-                </Typography>
-            </IconButton>
+                </Button>
+            </AnimateButton>
         </Box>
     );
 };

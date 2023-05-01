@@ -73,8 +73,6 @@ const Home = () => {
     }, []);
 
     const addToCart = (bookId, quantity) => {
-        // Implementar aqui a lógica para adicionar o livro ao carrinho
-        console.log(`Adicionando ${quantity} cópias do livro ${bookId} ao carrinho.`);
         var content = { bookId, quantity };
 
         cartService
@@ -107,6 +105,11 @@ const Home = () => {
                 </Typography>
             </Box>
             <br></br>
+            {cart && (
+                <>
+                    <CartBanner cart={cart} /> <br></br>
+                </>
+            )}
             <Grid container spacing={2}>
                 {books.map((book) => (
                     <Grid item xs={12} md={6} lg={4} key={book.id}>
@@ -143,7 +146,6 @@ const Home = () => {
                     />
                 </>
             )}
-            {cart && <CartBanner cart={cart} />}
         </MainCard>
     );
 };

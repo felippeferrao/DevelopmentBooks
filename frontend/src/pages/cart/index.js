@@ -1,11 +1,11 @@
-import { Box, Typography, Divider, Grid } from '@mui/material';
+import { Box, Typography, Divider, Grid, Button } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { CartService } from 'services/CartService';
 
 import MainCard from 'components/MainCard';
+import AnimateButton from 'components/@extended/AnimateButton';
 
 const useStyles = makeStyles({
     root: {
@@ -23,7 +23,7 @@ const useStyles = makeStyles({
 });
 
 const CartPage = () => {
-    const classes = useStyles();
+    const [error, setError] = useState(false);
     const cartService = new CartService();
     let authObj = useSelector((state) => state.auth);
     cartService.setToken(authObj.token);
@@ -42,6 +42,21 @@ const CartPage = () => {
                 setError({ submit: err.message });
             });
     }, []);
+
+    const onClearCart = () => {
+        cartService
+            .clearCart()
+            .then((reg) => {
+                if (!reg) {
+                    setError({ submit: 'API Error' });
+                }
+
+                setCart(reg);
+            })
+            .catch((err) => {
+                setError({ submit: err.message });
+            });
+    };
 
     const totalPrice = cart.discountSet?.totalPrice ? cart.discountSet.totalPrice.toFixed(2) : '0.00';
     const totalDiscount = cart.discountSet?.totalDiscount ? cart.discountSet.totalDiscount.toFixed(2) : '0.00';
@@ -102,6 +117,12 @@ const CartPage = () => {
             <Typography variant="body1" sx={{ fontWeight: 'bold' }}>
                 Total Discount: {totalDiscount} €
             </Typography>
+            <br></br>
+            <AnimateButton>
+                <Button variant="contained" color="success" size="small" onClick={onClearCart}>
+                    Clear Cart
+                </Button>
+            </AnimateButton>
         </MainCard>
     );
 };

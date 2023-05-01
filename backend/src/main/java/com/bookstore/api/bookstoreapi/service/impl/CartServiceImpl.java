@@ -132,7 +132,7 @@ public class CartServiceImpl implements CartService {
         Cart cart = getUserCart();
                 
         if (cart.getCartItems().size() > 0) {
-            cart.setCartItems(null);
+            cart.getCartItems().clear();
         	cartRepository.save(cart);
         }
         

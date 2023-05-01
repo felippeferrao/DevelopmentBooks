@@ -57,5 +57,4 @@ public class CartController implements Serializable {
 	    return cartService.clearCart();
 	}
 	
-
 }
