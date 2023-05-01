@@ -58,6 +58,18 @@ const Home = () => {
             .catch((err) => {
                 setError({ submit: err.message });
             });
+
+        cartService
+            .getMyCart()
+            .then((reg) => {
+                if (!reg) {
+                    setError({ submit: 'API Error' });
+                }
+                setCart(reg);
+            })
+            .catch((err) => {
+                setError({ submit: err.message });
+            });
     }, []);
 
     const addToCart = (bookId, quantity) => {
@@ -121,12 +133,15 @@ const Home = () => {
                 ))}
             </Grid>
             {showPopup && (
-                <BookDialog
-                    open={showPopup}
-                    book={selectedBook}
-                    onClose={() => setShowPopup(false)}
-                    onAddToCart={(book, quantity) => addToCart(book, quantity)}
-                />
+                <>
+                    <br />
+                    <BookDialog
+                        open={showPopup}
+                        book={selectedBook}
+                        onClose={() => setShowPopup(false)}
+                        onAddToCart={(book, quantity) => addToCart(book, quantity)}
+                    />
+                </>
             )}
             {cart && <CartBanner cart={cart} />}
         </MainCard>
